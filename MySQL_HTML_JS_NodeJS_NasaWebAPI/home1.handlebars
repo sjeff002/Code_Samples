@@ -1,0 +1,47 @@
+<h1>Hello, here is your list of exercises!</h1>
+
+<form id="newExercise">
+	Exercise:	
+	<input type="text" name="exercise" id="name"><br>
+	Reps:	
+	<input type="number" name="reps" id="reps "min="1" max="10000"><br>
+	Weight:	
+	<input type="number" name="weight" id="weight "min="1" max="10000"><br>
+	LBS (checked) KG (unchecked):	
+	<input type="number" name="l" id="l" min="0" max="1" />>
+	Date:	
+	<input type="date" name="date" id="date"><br>
+	<input type="submit" name="Add Item" value="Add Item" id="addItemSubmit">
+</form>
+<br>
+
+<table id="dataTable">
+	<tr>
+		<th>Name</th>
+		<th>Reps</th>
+		<th>Weight</th>
+		<th>KG/LBS</th>
+		<th>Date</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td>{{this.name}}</td>
+				<td>{{this.reps}}</td>
+				<td>{{this.weight}}</td>
+				<td>{{this.lbs}}</td>
+				<td>{{this.date}}</td>
+				<td>
+					<a href="/update?id={{this.id}}"><input type="button" value="Update"></a>
+			    </td>
+				<td>
+					<input type="button" name="delete" value="Delete" onClick="deleteRow('dataTable',{{this.id}})">
+					<input type="hidden" id="delete{{this.id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+<script src="./test2.js"></script>
